@@ -7,6 +7,8 @@ import os
 import random
 import smtplib
 
+# paths are different of everyone's device
+
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
@@ -60,8 +62,12 @@ def sendEmail(sendto, contentToSend):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login("python.dev5938@gmail.com", "Ravi@12345")
-    server.sendmail("python.dev5938@gmail.com", sendto, contentToSend)
+    speak("Enter your email")
+    email = input("Enter your email: ")
+    speak("Enter your password")
+    password = input("Enter your password: ")
+    server.login(f"{email}", f"{password}")
+    server.sendmail(f"{email}", sendto, contentToSend)
     server.close()
 
 if __name__ == '__main__':
@@ -90,11 +96,11 @@ if __name__ == '__main__':
         elif "play music" in query:
             music_dir = ""
             if "english" in query:
-                music_dir = "E:\\Song\\Eng"
+                music_dir = "E:\\Song\\Eng"  # path of music folder in the device
             elif "bollywood" in query:
-                music_dir = "E:\\Song\\My Music RR"
+                music_dir = "E:\\Song\\My Music RR"  # path of music folder in the device
             elif "trap" in query:
-                music_dir = "E:\\Song\\Audio\\Trap"
+                music_dir = "E:\\Song\\Audio\\Trap"  # path of music folder in the device
             else:
                 continue
             songs = os.listdir(music_dir)
@@ -107,38 +113,38 @@ if __name__ == '__main__':
             speak(f"Sir, the time is {strTime}")
 
         elif "open code" in query:
-            code_path = "C:\\Users\\USER\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+            code_path = "C:\\Users\\USER\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"  # path of vs code in the device
             os.startfile(code_path)
 
         elif "open cad" in query:
-            cad_path = "C:\\Program Files\\Autodesk\\AutoCAD 2020\\acad.exe"
+            cad_path = "C:\\Program Files\\Autodesk\\AutoCAD 2020\\acad.exe"  # path of autocad in the device
             os.startfile(cad_path)
 
         elif "open java" in query:
-            java_path = "C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2020.3\\bin\\idea64.exe"
+            java_path = "C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2020.3\\bin\\idea64.exe"  # path of intellij idea in the device
             os.startfile(java_path)
 
         elif "open pycharm" in query:
-            pycharm_path = "C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.3.2\\bin\\pycharm64.exe"
+            pycharm_path = "C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.3.2\\bin\\pycharm64.exe"  # path of pycharm in the device
             os.startfile(pycharm_path)
 
         elif "open fox" in query:
-            fox_path = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+            fox_path = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"  # path of firefox in the device
             os.startfile(fox_path)
 
         elif "open chrome" in query:
-            chrome_path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+            chrome_path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"  # path of chrome in the device
             os.startfile(chrome_path)
 
         elif "open edge" in query:
-            edge_path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+            edge_path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"  # path of ms edge in the device
             os.startfile(edge_path)
 
         elif "email to me" in query:
             try:
                 speak("what should I say")
                 content = takeCommand()
-                to = "rattu5938@gmail.com"
+                to = "rattu5938@gmail.com"  # email of receiver
                 sendEmail(to, content)
                 speak("Email has been sent")
             except Exception as e:
